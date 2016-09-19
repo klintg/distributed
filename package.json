@@ -1,0 +1,19 @@
+{
+  "name": "distributed",
+  "version": "1.0.0",
+  "description": "distributed app with rabbitmq",
+  "main": "main.go",
+  "scripts": {},
+  "keywords": [
+    "distributed",
+    "golang"
+  ],
+  "author": "klnt",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.3.2",
+    "gulp-shell": "^0.5.2"
+  }
+}
