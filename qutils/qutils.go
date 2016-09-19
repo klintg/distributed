@@ -19,7 +19,6 @@ func failOnError(err error, msg string) {
 func GetChannel(url string) (*amqp.Connection, *amqp.Channel) {
 	conn, err := amqp.Dial(url)
 	failOnError(err, "Failed to connect to rabbitMQ")
-	defer conn.Close()
 
 	//create a channel
 	ch, err := conn.Channel()
