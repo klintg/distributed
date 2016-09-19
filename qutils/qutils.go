@@ -7,6 +7,8 @@ import (
 	"github.com/streadway/amqp"
 )
 
+const SensorDiscoveryExchange = "SensorDiscovery"
+
 //check the return value for each amqp call
 func failOnError(err error, msg string) {
 	if err != nil {
@@ -28,11 +30,11 @@ func GetChannel(url string) (*amqp.Connection, *amqp.Channel) {
 }
 
 //GetQueue - To send data we must declare a queue for us to send to, then we can publish a message to the queue
-func GetQueue(name string, ch *amqp.Channel) *amqp.Queue {
+func GetQueue(name string, ch *amqp.Channel, autoDelete bool) *amqp.Queue {
 	q, err := ch.QueueDeclare(
 		name,
 		false, //durable,
-		false, //autoDelete,
+		autoDelete, //autoDelete,
 		false, //exclusive,
 		false, //noWait,
 		nil,
