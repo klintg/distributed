@@ -13,7 +13,7 @@ import (
   "github.com/streadway/amqp"
 )  
 
-var url = "amqp://guest:guest@localhost:15672"
+var url = "amqp://guest:guest@localhost:5672"
 
 var name = flag.String("name", "sensor", "name of the sensor")
 var freq = flag.Uint("freq", 5, "update frequency in cycles/sec")

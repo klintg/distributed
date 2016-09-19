@@ -15,9 +15,10 @@ func failOnError(err error, msg string) {
 	}
 }
 
+//GetChannel - where most of the API for getting things done resides.
 func GetChannel(url string) (*amqp.Connection, *amqp.Channel) {
 	conn, err := amqp.Dial(url)
-	failOnError(err, "Failed to connect to RabbitMQ")
+	failOnError(err, "Failed to connect to rabbitMQ")
 	defer conn.Close()
 
 	//create a channel
@@ -27,6 +28,7 @@ func GetChannel(url string) (*amqp.Connection, *amqp.Channel) {
 	return conn, ch
 }
 
+//GetQueue - To send data we must declare a queue for us to send to, then we can publish a message to the queue
 func GetQueue(name string, ch *amqp.Channel) *amqp.Queue {
 	q, err := ch.QueueDeclare(
 		name,
@@ -34,7 +36,8 @@ func GetQueue(name string, ch *amqp.Channel) *amqp.Queue {
 		false, //autoDelete,
 		false, //exclusive,
 		false, //noWait,
-		nil)
+		nil,
+		)
 
 	failOnError(err, "Failed to declare queue")
 
