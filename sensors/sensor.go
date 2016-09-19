@@ -2,16 +2,16 @@ package main
 
 import (
 	"bytes"
-	"distributed/dto"
+	"distributed/dto"  
 	"encoding/gob"
 	"flag"
 	"log"
-	"math/rand"
+	"math/rand" 
 	"strconv"
 	"time"
   "distributed/qutils"
   "github.com/streadway/amqp"
-)
+)  
 
 var url = "amqp://guest:guest@localhost:15672"
 
@@ -21,7 +21,7 @@ var max = flag.Float64("max", 5, "maximum value for generated readings")
 var min = flag.Float64("min", 1, "minimum value for generated readings")
 var stepSize = flag.Float64("step", 0.1, "maximum allowable change per measurement")
 
-var r = rand.New(rand.NewSource(time.Now().UnixNano()))
+var r = rand.New(rand.NewSource(time.Now().UnixNano())) //the random number
 
 var value = r.Float64()*(*max-*min) + *min
 
@@ -29,7 +29,7 @@ var nom = (*max-*min)/2 + *min
 
 func main() {
 	flag.Parse()
-
+	
   conn, ch := qutils.GetChannel(url)
   defer conn.Close()
   defer ch.Close()
@@ -63,7 +63,7 @@ func main() {
       dataQueue.Name,
       false,
       false,
-      msg
+      msg,
     )
 
 		log.Printf("Reading sent. Value: %v \n", value)
